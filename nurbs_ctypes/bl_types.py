@@ -1,6 +1,7 @@
 from ctypes import POINTER, cast
-
 from .ctypes_ import Nurb, BPoint
+
+from bpy.types import Spline
 
 
 class CP:
@@ -10,7 +11,8 @@ class CP:
 
 
 class NurbsSpline:
-    def __init__(self, spline):
+    def __init__(self, spline: Spline):
+        assert spline.type == 'NURBS', f"Spline type is not NURBS: ({spline.type})"
         self.ptr = spline.as_pointer()
         self.c_ptr = cast(self.ptr, POINTER(Nurb))
 
@@ -97,7 +99,6 @@ class NurbsSpline:
     @property
     def charidx(self):
         return self.c_ptr.contents.charidx
-
 
     """"
      short hide, flag;

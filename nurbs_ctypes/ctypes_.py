@@ -1,5 +1,5 @@
 import ctypes
-from ctypes import POINTER, Structure
+from ctypes import POINTER, Structure, c_float, c_short, c_int, c_char
 
 
 class BezTriple(Structure):
@@ -22,31 +22,31 @@ class BezTriple(Structure):
     """
 
     _fields_ = [
-        ("vec", ctypes.c_float * 3 * 3),
+        ("vec", c_float * 3 * 3),
 
-        ("tilt", ctypes.c_float),
-        ("weight", ctypes.c_float),
-        ("radius", ctypes.c_float),
+        ("tilt", c_float),
+        ("weight", c_float),
+        ("radius", c_float),
 
-        ("ipo", ctypes.c_char),
+        ("ipo", c_char),
 
-        ("h1", ctypes.c_char),
-        ("h2", ctypes.c_char),
+        ("h1", c_char),
+        ("h2", c_char),
 
-        ("f1", ctypes.c_char),
-        ("f2", ctypes.c_char),
-        ("f3", ctypes.c_char),
+        ("f1", c_char),
+        ("f2", c_char),
+        ("f3", c_char),
 
-        ("hide", ctypes.c_char),
+        ("hide", c_char),
 
-        ("easing", ctypes.c_char),
+        ("easing", c_char),
 
-        ("back", ctypes.c_float),
-        ("amplitude", ctypes.c_float),
-        ("period", ctypes.c_float),
+        ("back", c_float),
+        ("amplitude", c_float),
+        ("period", c_float),
 
-        ("f5", ctypes.c_char),
-        ("_pad", ctypes.c_char * 3),
+        ("f5", c_char),
+        ("_pad", c_char * 3),
     ]
 
 
@@ -62,16 +62,16 @@ class BPoint(Structure):
     } BPoint;
     """
     _fields_ = [
-        ("vec", ctypes.c_float * 4),
+        ("vec", c_float * 4),
 
-        ("tilt", ctypes.c_float),
-        ("weight", ctypes.c_float),
+        ("tilt", c_float),
+        ("weight", c_float),
 
-        ("f1", ctypes.c_short),
-        ("hide", ctypes.c_short),
+        ("f1", c_short),
+        ("hide", c_short),
 
-        ("radius", ctypes.c_float),
-        ("_pad", ctypes.c_char * 4),
+        ("radius", c_float),
+        ("_pad", c_char * 4),
     ]
 
 
@@ -107,34 +107,34 @@ Nurb._fields_ = [
     ("next", POINTER(Nurb)),
     ("prev", POINTER(Nurb)),
 
-    ("type", ctypes.c_short),
+    ("type", c_short),
 
-    ("mat_nr", ctypes.c_short),
-    ("hide", ctypes.c_short),
-    ("flag", ctypes.c_short),
+    ("mat_nr", c_short),
+    ("hide", c_short),
+    ("flag", c_short),
 
-    ("pntsu", ctypes.c_int),
-    ("pntsv", ctypes.c_int),
+    ("pntsu", c_int),
+    ("pntsv", c_int),
 
-    ("_pad", ctypes.c_char * 4),
+    ("_pad", c_char * 4),
 
-    ("resolu", ctypes.c_short),
-    ("resolv", ctypes.c_short),
-    ("orderu", ctypes.c_short),
-    ("orderv", ctypes.c_short),
-    ("flagu", ctypes.c_short),
-    ("flagv", ctypes.c_short),
+    ("resolu", c_short),
+    ("resolv", c_short),
+    ("orderu", c_short),
+    ("orderv", c_short),
+    ("flagu", c_short),
+    ("flagv", c_short),
 
-    ("knotsu", POINTER(ctypes.c_float)),
-    ("knotsv", POINTER(ctypes.c_float)),
+    ("knotsu", POINTER(c_float)),
+    ("knotsv", POINTER(c_float)),
 
     ("bp", POINTER(BPoint)),
     ("bezt", POINTER(BezTriple)),
 
-    ("tilt_interp", ctypes.c_short),
-    ("radius_interp", ctypes.c_short),
+    ("tilt_interp", c_short),
+    ("radius_interp", c_short),
 
-    ("charidx", ctypes.c_int),
+    ("charidx", c_int),
 ]
 
 #TODO
